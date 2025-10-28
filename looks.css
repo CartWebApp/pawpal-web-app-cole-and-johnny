@@ -4,18 +4,17 @@
     font-size: 20px;
 }
 :root{
-    --primary: #8FB996;
-    --background: #fff1da;
+    --primary: #8fb996;
+    --background:#fff1da;
     --accent1:#9adb7c;
-    --accent2:#ebc07d;
+    --accent2:#EBC07D;
 }
 body,main{
     margin:0;
     padding:0;
-    background-color: var(--accent2);
 }
 nav {
-    background-color: var(--accent2);
+    background-color:var(--accent2);
     display:flex;
     height:89.9px;
     margin:0;
@@ -30,32 +29,26 @@ nav {
     margin:0;
     padding:0;
     border-radius:19px;
-    justify-self:flex-start;
 }
-nav>ul{
-    display:flex;
-    align-items:center;
-    list-style:none;
-    text-decoration:none;
-    justify-content:space-around;
-    align-self:center;
-    justify-self:center;
-    padding-left:260px;
-}
-figure.account>a {
-    text-decoration:none;
-    justify-self:flex-end;
-}
+nav>ul,
 li>a{
     display:flex;
     align-items:center;
     list-style:none;
     text-decoration:none;
-    justify-content:space-between;
-    width:125px;
-    padding:10px;
-    background-color: var(--primary);
-    color:black;
-    margin-right:20px;
+    padding:0;
+    justify-content:center;
+}
+figure.account>a {
+    text-decoration:none;
+    padding:12px;
+    
+}
+li{
+    padding:12px;
+    justify-self:center;
+    background-color: var(--background);
+    border-radius: 100px;
+    width: 100px;
     text-align:center;
 }
