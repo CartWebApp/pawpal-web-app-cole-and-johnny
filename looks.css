@@ -22,6 +22,7 @@ nav {
     align-items:center;
     justify-content:space-between;
     text-align:center;
+    width:100vw;
 }
 .logo{
     width:123px;
@@ -36,7 +37,7 @@ nav>ul{
     margin:0;
     padding:0;
     list-style:none;
-    margin-left:260px;
+    margin-left:13%;
 }
 li>a{
     display:flex;
@@ -45,21 +46,33 @@ li>a{
     text-decoration:none;
     padding:0;
     justify-content:center;
+    color:black;
 }
 figure.account>a {
     text-decoration:none;
     padding:12px;
-    
+    background-color: var(--primary);
 }
-li{
+nav li{
     padding:12px;
     justify-self:center;
-    background-color: var(--background);
+    background-color: var(--primary);
     border-radius: 100px;
     width: 100px;
     text-align:center;
 }
 
-.account {
-    
+
+
+.leaderboard>ul {
+    list-style: none;
+    padding:12px;
+    justify-self:center;
+    background-color: var(--accent1);
+    border-radius: 100px;
+    width: 100px;
+    text-align:center;
+}
+.leaderboard{
+    background-color:var(--primary);
 }
