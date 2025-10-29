@@ -16,13 +16,12 @@ body,main{
 nav {
     background-color:var(--accent2);
     display:flex;
-    height:89.9px;
+    height:9.6vh;
     margin:0;
     padding:0;
     align-items:center;
     justify-content:space-between;
     text-align:center;
-    width:100vw;
 }
 .logo{
     width:123px;
@@ -38,9 +37,9 @@ nav>ul{
     padding:0;
     list-style:none;
     margin-left:13%;
+    flex-shrink: 1;
 }
 li>a{
-    display:flex;
     align-items:center;
     list-style:none;
     text-decoration:none;
@@ -49,9 +48,12 @@ li>a{
     color:black;
 }
 figure.account>a {
+    justify-content:space-between;
     text-decoration:none;
     padding:12px;
     background-color: var(--primary);
+    width:100px;
+    border-radius:100px;
 }
 nav li{
     padding:12px;
@@ -60,19 +62,58 @@ nav li{
     border-radius: 100px;
     width: 100px;
     text-align:center;
+    flex-shrink: 1;
 }
-
-
-
-.leaderboard>ul {
+.leaderboard>ul{
+    display:flex;
+    flex-flow:column;
+    align-items:center;
+    width:80%;
+    justify-self:center;
+}
+.leaderboard li {
+    display:flex;
+    justify-content:center;
+    align-items:center;
     list-style: none;
     padding:12px;
     justify-self:center;
     background-color: var(--accent1);
-    border-radius: 100px;
-    width: 100px;
+    width: 80vw;
     text-align:center;
+    margin:1vw 1vh;
+    height:5vh;
 }
 .leaderboard{
     background-color:var(--primary);
+    display:flex;
+}
+.background{
+    background-color: var(--primary);
+}
+.activities li {
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    list-style: none;
+    padding:12px;
+    justify-self:center;
+    background-color: var(--accent1);
+    width: 80vw;
+    text-align:center;
+    margin:1vw 1vh;
+    height:5vh;
+}
+.recent li {
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    list-style: none;
+    padding:12px;
+    justify-self:center;
+    background-color: var(--accent1);
+    width: 80vw;
+    text-align:center;
+    margin:1vw 1vh;
+    height:5vh;
 }
