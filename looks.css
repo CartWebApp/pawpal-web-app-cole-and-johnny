@@ -22,6 +22,8 @@ nav {
     align-items:center;
     justify-content:space-between;
     text-align:center;
+    position:fixed;
+    width:100%;
 }
 .logo{
     width:123px;
@@ -53,7 +55,10 @@ figure.account>a {
     padding:12px;
     background-color: var(--primary);
     width:100px;
-    border-radius:100px;
+    color:black;
+}
+figure a[href="account.html"]{
+    background-color:transparent;
 }
 nav li{
     padding:12px;
@@ -64,14 +69,10 @@ nav li{
     text-align:center;
     flex-shrink: 1;
 }
-.leaderboard>ul{
-    display:flex;
-    flex-flow:column;
-    align-items:center;
-    width:80%;
-    justify-self:center;
-}
-.leaderboard li {
+
+.leaderboard li,
+.activities li,
+.recent li {
     display:flex;
     justify-content:center;
     align-items:center;
@@ -84,36 +85,26 @@ nav li{
     margin:1vw 1vh;
     height:5vh;
 }
-.leaderboard{
-    background-color:var(--primary);
-    display:flex;
-}
+
 .background{
     background-color: var(--primary);
-}
-.activities li {
     display:flex;
-    justify-content:flex-start;
+    flex-flow:column;
     align-items:center;
-    list-style: none;
-    padding:12px;
-    justify-self:center;
-    background-color: var(--accent1);
-    width: 80vw;
-    text-align:center;
-    margin:1vw 1vh;
-    height:5vh;
+    padding:0;
 }
-.recent li {
-    display:flex;
-    justify-content:flex-start;
-    align-items:center;
-    list-style: none;
-    padding:12px;
-    justify-self:center;
-    background-color: var(--accent1);
-    width: 80vw;
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
+ul{ 
+    padding:0
+}
+footer{
+    background-color:black;
+    color:white;
     text-align:center;
-    margin:1vw 1vh;
-    height:5vh;
+    position: relative;
+    align-self:flex-end;
 }
