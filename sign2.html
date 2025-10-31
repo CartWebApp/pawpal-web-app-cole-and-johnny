@@ -10,15 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Your Profile</h1>
     
     <div class="pictures" onclick="triggerUpload(this)">
         <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
         <span>Click to Upload Photo</span>
     </div>
-
+<section class="saveprof">
     <button onclick="saveUserProfile()">Save Profile</button>
-
+</section>
     <script src="ai.js"></script>
     <form class="sign-in">
         <input type="text" class="first" name="first name" placeholder="First Name" required><br><br>

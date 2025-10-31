@@ -12,6 +12,7 @@
 body,main{
     margin:0;
     padding:0;
+    background-color: var(--background);
 }
 nav {
     background-color:var(--accent2);
@@ -31,6 +32,11 @@ nav {
     margin:0;
     padding:0;
     border-radius:19px;
+}
+
+.logo:hover {
+    opacity: 80%;
+    transition: 150ms;
 }
 nav>ul{
     display:flex;
@@ -68,6 +74,16 @@ nav li{
     width: 100px;
     text-align:center;
     flex-shrink: 1;
+}
+
+nav li:hover {
+    background-color: var(--accent1);
+    transition: 150ms;
+}
+
+.account > a:hover {
+    background-color: var(--accent1);
+    transition: 150ms;
 }
 
 .leaderboard li,
@@ -113,22 +129,40 @@ a{
     color:black;
     text-decoration:none;
 }
-
+#pet {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
 .subnav {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
     gap: 5%;
     padding-top: 16.5vh;
- 
+    height: 3vh;
+    width:100%;
+    
 }
 
 .subnav > a {
     background-color: var(--primary);
-    border-radius: 100px;
-    width: 100px;
     text-align: center;
-    
+    border-radius: 100px;
+    width:15%;
 }
+
+.subnav > a:hover {
+    background-color: var(--accent1);
+    transition: 150ms;
+}
+
+#petName {
+    position: relative;
+    width: 20%;
+}
+
 .pictures {
     width: 200px;
     height: 200px;
@@ -191,4 +225,73 @@ a{
 .remove-btn:hover {
     background-color: #ff3838;
     transform: scale(1.1);
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    margin-top: 5%;
+}
+
+.signup > a{
+    background-color: var(--accent2);
+    border-radius: 55px;
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+    padding: 2vh;
+    font-size: xx-large;
+    align-self: center;
+}
+
+.signup > p{
+    background-color: var(--accent2);
+    border-radius: 55px;
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+    padding: 2vh;
+    font-size: xx-large;
+    align-self: center;
+}
+
+.signup > h1{
+    display: flex;
+    justify-content: center;
+    font-size: 400%;
+}
+
+button {
+    display: flex;
+    background-color: var(--accent2);
+    border-radius: 55px;
+    width: 40%;
+    justify-content: center;
+    text-align: center;
+    padding: 1%; 
+    align-self: center;  
+    font: 20px; 
+
+}
+
+.sign-in {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+    background-color: var(--primary);
+    margin: 5%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.sign-in > input {
+    background-color: var(--accent1);
+    border-radius: 10px;
+    height: 4vh;
+}
+
+.saveprof /*This one is for the sign up page*/{
+    display: flex;
+    justify-content: center;
 }
