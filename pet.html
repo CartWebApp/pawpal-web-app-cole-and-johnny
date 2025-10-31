@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="looks.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="javascript" href="ai.js">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -33,6 +31,19 @@
             <a href="log.html">Activity Log</a>
             <a href="#">Activity Data</a>
         </section>
+    <h1>Pet Profile</h1>
+    
+    <div class="pictures" onclick="triggerUpload(this)">
+        <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
+        <span>Click to Upload Pet Photo</span>
+    </div>
+
+    <label for="petName">Pet's Name</label>
+    <input type="text" id="petName">
+
+    <button onclick="savePetProfile()">Save Profile</button>
+
+    <script src="ai.js"></script>
     </main>
 </body>
 </html>
