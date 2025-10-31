@@ -21,7 +21,7 @@
         <figure class="account">
             <a href="sign.html">Sign Up</a>
             <a href="log.html">Log in</a>
-            <a href="account.html"><img src="">Username</a>
+            <a href="account.html"><img src="images/biden.png" id="biden">Username</a>
         </figure>
     </nav>
     <main id="pet">
@@ -31,17 +31,18 @@
             <a href="#">Activity Log</a>
             <a href="#">Activity Data</a>
         </section>
-    <h1>Pet Profile</h1>
     
     <div class="pictures" onclick="triggerUpload(this)">
         <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
         <span>Click to Upload Pet Photo</span>
     </div>
 
+    <div id="petsname">
     <label for="petName">Pet's Name</label>
     <input type="text" id="petName">
+    </div>
 
-    <button onclick="savePetProfile()">Save Profile</button>
+    <button onclick="savePetProfile()" id="petsave">Save Profile</button>
 
     <script src="ai.js"></script>
     </main>

@@ -55,6 +55,7 @@ li>a{
     justify-content:center;
     color:black;
 }
+
 figure.account>a {
     justify-content:space-between;
     text-decoration:none;
@@ -158,9 +159,16 @@ a{
     transition: 150ms;
 }
 
-#petName {
+#petsname {
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: 20%;
+    margin-left: 5%;
+}
+
+#petsave {
+    margin-top: 10%;
 }
 
 .pictures {
@@ -294,4 +302,9 @@ button {
 .saveprof /*This one is for the sign up page*/{
     display: flex;
     justify-content: center;
+}
+
+#biden {
+    width: 20px;
+    height: 20px;
 }
