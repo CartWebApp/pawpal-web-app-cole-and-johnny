@@ -132,3 +132,11 @@ function savePetProfile() {
         alert('Please enter your pet\'s name');
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const map = L.map('map').setView([20, 0], 2); // Centered world view
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+});

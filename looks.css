@@ -171,6 +171,11 @@ a{
     margin-top: 10%;
 }
 
+#petsave:hover {
+    background-color: var(--accent2);
+    transition: 150ms;
+}
+
 .pictures {
     width: 200px;
     height: 200px;
