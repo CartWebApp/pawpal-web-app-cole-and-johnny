@@ -7,24 +7,25 @@
     <link rel="stylesheet" href="looks.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="javascript" href="ai.js">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 </head>
 <body id="log">
      <a href="index.html"><img class="logo" src="images/logo.png"></a>
     <h1>Log In To PawPal</h1>
-    <form class="login">
+    <form class="login" onsubmit="handleLogin(event)">
         <input type="text" id="username" name="username" placeholder="Email/Username" required><br><br>
         <input type="password" id="password" name="password" placeholder="Password" required><br><br>
         <input type="checkbox" id="remember" name="remember" >
         <label for="remember">Stay Logged In</label> <br><br>
-        <button type="submit"><a href="index.html">Log In</a></button>
+        <button type="submit">Log In</button>
     </form>
 
     <article id="a-log">
- <a href="#">Google</a>
- <a href="#">Apple</a>
- </article>
+        <a href="#">Google</a>
+        <a href="#">Apple</a>
+    </article>
+    
+    <script src="ai.js"></script>
 </body>
 </html>

@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Sign Up - Paw Pal</title>
     <link rel="stylesheet" href="looks.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="javascript" href="ai.js">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <a href="index.html"><img class="logo" src="images/logo.png"></a>
-    <section class="signup">
-        <h1>
-            Sign Up for PawPal
-        </h1>
-
-        <a href="sign2.html">Email
-        </a>
-        <p>Google
-        </p>
-        <p>Apple
-        </p>
-    </section>
+    <nav>
+        <a href="index.html"><img class="logo" src="images/logo.png"></a>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pet.html">Pets</a></li>
+            <li><a href="live.html">Live Maps</a></li>
+            <li><a href="account.html">Account</a></li>
+        </ul>
+        <figure class="account" id="navAccount">
+            <a href="sign.html" id="signupLink">Sign Up</a>
+            <a href="log.html" id="loginLink">Log in</a>
+            <a href="account.html" id="userProfile" style="display: none;">
+                <img src="images/biden.png" id="biden">
+                <span id="navUsername">Username</span>
+            </a>
+        </figure>
+    </nav>
+    <main>
+        <div class="auth-container">
+            <h1>Create Your Account</h1>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                </div>
+                <button type="submit" class="auth-btn">Sign Up</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="log.html">Log in</a></p>
+        </div>
+    </main>
+    <footer>
+        <p>© 2025-2067 Paw Pal. All rights reserved.</p>
+    </footer>
+    <script src="auth.js"></script>
 </body>
-
 </html>

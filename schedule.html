@@ -12,18 +12,21 @@
 </head>
 <body>
     <nav>
-        <a href="index.html"><img class="logo" src="images/logo.png"></a>
-        <ul class="navbar">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="pet.html">Pets</a></li>
-            <li><a href="live.html">Live Maps</a></li>
-            <li><a href="account.html">Account</a></li>
-        </ul>
-        <figure class="account">
-            <a href="sign.html">Sign Up</a>
-            <a href="log.html">Log in</a>
-            <a href="account.html"><img src="images/biden.png" id="biden">Username</a>
-        </figure>
-    </nav>
+    <a href="index.html"><img class="logo" src="images/logo.png"></a>
+    <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pet.html">Pets</a></li>
+        <li><a href="live.html">Live Maps</a></li>
+        <li><a href="account.html">Account</a></li>
+    </ul>
+    <figure class="account" id="navAccount">
+        <a href="sign.html" id="signupLink">Sign Up</a>
+        <a href="log.html" id="loginLink">Log in</a>
+        <a href="account.html" id="userProfile" style="display: none;">
+            <img src="images/biden.png" id="biden">
+            <span id="navUsername">Username</span>
+        </a>
+    </figure>
+</nav>
     </body>
 </html>

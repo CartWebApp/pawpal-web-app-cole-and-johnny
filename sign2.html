@@ -10,21 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="index.html"><img class="logo" src="images/logo.png"></a>
     
     <div class="pictures" onclick="triggerUpload(this)">
         <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
         <span>Click to Upload Photo</span>
     </div>
-<section class="saveprof">
-    <button onclick="saveUserProfile()">Save Profile Picture</button>
-</section>
-    <script src="ai.js"></script>
-    <form class="sign-in">
+
+    <form class="sign-in" onsubmit="handleSignup(event)">
         <input type="text" class="first" name="first name" placeholder="First Name" required><br><br>
         <input type="text" class="last" name="last name" placeholder="Last Name" required><br><br>
         <input type="email" class="email" name="email" placeholder="Email" required><br><br>
         <input type="password" class="password" name="password" placeholder="Password" required><br><br>
-        <button type="submit"><a href="index.html">Sign Up</a></button>
+        <button type="submit">Sign Up</button>
     </form>
+    
+    <script src="ai.js"></script>
 </body>
 </html>
