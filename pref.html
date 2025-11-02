@@ -25,5 +25,43 @@
             <a href="account.html"><img src="images/biden.png" id="biden">Username</a>
         </figure>
     </nav>
+    <main id="pref">
+    <h1>Preferences</h1>
+        <a class="ownr-set" href="setting.html"><img src="images/burger.png" id="setting"></a>
+        <label for="language">Language:</label><br>
+        <select id="more" name="More Options">
+            <option value="language1">English</option>
+            <option value="language2">Español</option>
+            <option value="language3">Français</option>
+        </select><br><br>
+
+
+        <label for="theme">Theme:</label><br>
+        <select id="theme" name="theme">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="default">System Default</option>
+        </select><br><br>
+
+
+        <label for="accessibility">Accessibility:</label><br>
+        <input type="checkbox" id="high-contrast" name="accessibility" value="high-contrast">
+        <label for="high-contrast">High Contrast</label><br>
+        <input type="checkbox" id="text-to-speech" name="accessibility" value="text-to-speech">
+        <label for="text-to-speech">Text to Speech</label><br>
+        <input type="checkbox" id="keyboard-navigation" name="accessibility" value="keyboard-navigation">
+        <label for="keyboard-navigation">Keyboard Navigation</label><br><br>
+
+
+        <label for="region-timezone">Region & Timezone:</label><br>
+        <select id="region-timezone" name="region-timezone">
+            <option value="pst">Pacific Standard Time (PST)</option>
+            <option value="mst">Mountain Standard Time (MST)</option>
+            <option value="cst">Central Standard Time (CST)</option>
+            <option value="est">Eastern Standard Time (EST)</option>
+        </select><br><br>
+        <input type="submit" value="Save Preferences">
+
+</main>
     </body>
 </html>

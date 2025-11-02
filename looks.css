@@ -23,7 +23,6 @@ nav {
     align-items:center;
     justify-content:space-between;
     text-align:center;
-    position:fixed;
     width:100%;
 }
 .logo{
@@ -109,7 +108,6 @@ nav li:hover {
     flex-flow:column;
     align-items:center;
     padding:0;
-    padding-top:9.6vh;
 }
 
 h2 {
