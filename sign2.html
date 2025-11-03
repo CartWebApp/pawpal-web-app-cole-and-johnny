@@ -17,14 +17,29 @@
         <span>Click to Upload Photo</span>
     </div>
 
-    <form class="sign-in" onsubmit="handleSignup(event)">
-        <input type="text" class="first" name="first name" placeholder="First Name" required><br><br>
-        <input type="text" class="last" name="last name" placeholder="Last Name" required><br><br>
-        <input type="email" class="email" name="email" placeholder="Email" required><br><br>
-        <input type="password" class="password" name="password" placeholder="Password" required><br><br>
-        <button type="submit">Sign Up</button>
-    </form>
-    
-    <script src="ai.js"></script>
+    <div class="auth-container">
+        <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="main-form">
+            <div class="form-group">
+                <input type="text" id="user-name" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password" required minlength="6">
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required minlength="6">
+            </div>
+            </div>
+            <button type="submit" class="auth-btn">Sign Up</button>
+        </form>
+    </div>
+</main>
+<footer>
+    <p>© 2025-2067 Paw Pal. All rights reserved.</p>
+</footer>
+<script src="ai.js"></script>
 </body>
 </html>

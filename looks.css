@@ -457,86 +457,7 @@ height: 6vh;
     font: 20px; 
     margin-top: 2%;
 }
-/* Authentication Container Styles */
-.auth-container {
-    max-width: 450px;
-    margin: 80px auto;
-    padding: 40px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.auth-container h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: 'Nunito', sans-serif;
-    transition: border-color 0.3s;
-    box-sizing: border-box;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: #4CAF50;
-}
-
-.auth-btn {
-    width: 100%;
-    padding: 14px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-family: 'Nunito', sans-serif;
-    margin-top: 10px;
-}
-
-.auth-btn:hover {
-    background: #45a049;
-}
-
-.auth-switch {
-    text-align: center;
-    margin-top: 20px;
-    color: #666;
-    font-size: 14px;
-}
-
-.auth-switch a {
-    color: #4CAF50;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.auth-switch a:hover {
-    text-decoration: underline;
-}
 
 /* Navigation Account Styles */
 .account {
@@ -573,44 +494,60 @@ height: 6vh;
     font-weight: 600;
     color: #333;
 }
+
+#signuph1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    font-size: 400%;
+}
+
+#signup1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; 
+    text-align: center;
+}
+
+#signup1 > a {
+    width: 50%;
+    background-color: var(--button);
+    margin-bottom: 10%;
+    justify-self:center;
+    text-align:center;
+    height: 8vh;
+    border-radius: 55px;
+    font-size: xx-large;
+}
+
 /* Authentication Container Styles */
 .auth-container {
     max-width: 450px;
     margin: 80px auto;
     padding: 40px;
-    background: white;
+    background-color: var(--primary);
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.auth-container h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
 }
 
 .form-group {
     margin-bottom: 20px;
 }
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 600;
-    font-size: 14px;
+.form-group input[placeholder="Username"]{
+    color:black;
 }
 
 .form-group input {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 16px;
     font-family: 'Nunito', sans-serif;
     transition: border-color 0.3s;
     box-sizing: border-box;
+    background-color: var(--accent1);
+    border:none;
 }
 
 .form-group input:focus {
@@ -621,10 +558,10 @@ height: 6vh;
 .auth-btn {
     width: 100%;
     padding: 14px;
-    background: #4CAF50;
-    color: white;
+    background-color: var(--accent2);
+    color: black;
     border: none;
-    border-radius: 8px;
+    border-radius: 100px;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
@@ -1360,10 +1297,11 @@ input#bio{
     width:20vw;
     height:10vh;
 }
-@media (max-width:976px){
+@media (max-width:1120px){
     nav{
-        align-self:flex-end;
+        display:flex;
         position:fixed;
+        justify-content:space-between;
         bottom:0;
         width:100%;
         order:-1;
@@ -1371,13 +1309,17 @@ input#bio{
     a[href="index.html"]>img.logo{
         display:none;
     }
-    li>a[href="index.html"]{
+    nav li>a[href="index.html"]{
         background-color:transparent;
         background-image:url(images/1946488.png);
-        background-size:cover;
+        background-size:contain;
         padding:0;
         padding-top:100%;
         text-align:end;
-
+        color:transparent;
+        height:30%;
+    }
+    nav li{
+        background-color:transparent;
     }
 }
