@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Profile</title>
-    <link rel="javascript" href="ai.js">
+    <title>Activity Log - Paw Pal</title>
     <link rel="stylesheet" href="looks.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,22 +11,74 @@
 </head>
 <body>
     <nav>
-    <a href="index.html"><img class="logo" src="images/logo.png"></a>
-    <ul class="navbar">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pet.html">Pets</a></li>
-        <li><a href="live.html">Live Maps</a></li>
-        <li><a href="account.html">Account</a></li>
-    </ul>
-    <figure class="account" id="navAccount">
-        <a href="sign.html" id="signupLink">Sign Up</a>
-        <a href="log.html" id="loginLink">Log in</a>
-        <a href="account.html" id="userProfile" style="display: none;">
-            <img src="images/biden.png" id="biden">
-            <span id="navUsername">Username</span>
-        </a>
-    </figure>
-</nav>
-<script src="ai.js"></script>
-    </body>
+        <a href="index.html"><img class="logo" src="images/logo.png"></a>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pet.html">Pets</a></li>
+            <li><a href="live.html">Live Maps</a></li>
+            <li><a href="account.html">Account</a></li>
+        </ul>
+        <figure class="account" id="navAccount">
+            <a href="sign.html" id="signupLink">Sign Up</a>
+            <a href="log.html" id="loginLink">Log in</a>
+            <a href="account.html" id="userProfile" style="display: none;">
+                <img src="images/biden.png" id="biden">
+                <span id="navUsername">Username</span>
+            </a>
+        </figure>
+    </nav>
+
+    <main id="pet">
+        <section class="subnav">
+            <a href="pet.html">Pet Profile</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="act-log.html">Activity Log</a>
+            <a href="data.html">Activity Data</a>
+        </section>
+
+        <div class="activity-container">
+            <!-- Activity Form -->
+            <div class="activity-form">
+                <label for="activityType">New Activity:</label>
+                <select id="activityType">
+                    <option value="">Select Activity</option>
+                    <option value="Walk">Walk</option>
+                    <option value="Fed">Fed</option>
+                    <option value="Play">Play</option>
+                    <option value="Vet">Vet Appointment</option>
+                    <option value="Grooming">Grooming</option>
+                    <option value="Training">Training</option>
+                    <option value="Bath">Bath</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Other">Other</option>
+                </select>
+                
+                <input type="text" id="activityDetails" placeholder="Details (optional)...">
+                
+                <button class="add-activity-btn" onclick="addActivity()">Add</button>
+            </div>
+
+            <!-- Activity Columns -->
+            <div class="activity-columns">
+                <!-- Recent Activity -->
+                <div class="activity-column">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="recentActivities">
+                        <div class="empty-state">No recent activities</div>
+                    </div>
+                </div>
+
+                <!-- Upcoming -->
+                <div class="activity-column">
+                    <h2>Upcoming</h2>
+                    <div class="activity-list" id="upcomingActivities">
+                        <div class="empty-state">No upcoming activities</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="ai.js"></script>
+</body>
 </html>

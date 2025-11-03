@@ -24,24 +24,23 @@
             <a href="account.html" id="userProfile" style="display: none;">
                 <img src="images/biden.png" id="biden">
                 <span id="navUsername">Username</span>
-            </a>
+            </a> 
         </figure>
-    </nav>
+    </nav> 
     <main id="account">
         <a class="ownr-set" href="setting.html"><img src="images/burger.png" id="setting"></a>
     <div class="pictures" onclick="triggerUpload(this)">
         <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
         <span>Click to Upload Photo</span>
-    </div>
-<section class="saveprof">
-    <button onclick="saveUserProfile()">Save Profile</button>
-</section>
+    </div> 
 <section id="userinfo">
-    <label for="username">Username</label><br>
-    <input type="text" id="username">
+    <input type="text" id="username" placeholder="Username">
 <br><br>
     <label for="bio">Bio</label><br>
     <input type="text" id="bio">
+</section><br><br>
+<section class="saveprof">  
+        <button onclick="saveUserProfile()">Save Profile</button>
 </section>
 </main>
     <script src="ai.js"></script>

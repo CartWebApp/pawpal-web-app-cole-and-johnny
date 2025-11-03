@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Pet - Paw Pal</title>
+    <link rel="stylesheet" href="looks.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="index.html"><img class="logo" src="images/logo.png"></a>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pet.html">Pets</a></li>
+            <li><a href="live.html">Live Maps</a></li>
+            <li><a href="account.html">Account</a></li>
+        </ul>
+        <figure class="account" id="navAccount">
+            <a href="sign.html" id="signupLink">Sign Up</a>
+            <a href="log.html" id="loginLink">Log in</a>
+            <a href="account.html" id="userProfile" style="display: none;">
+                <img src="images/biden.png" id="biden">
+                <span id="navUsername">Username</span>
+            </a>
+        </figure>
+    </nav>
+
+    <main>
+        <div class="game-container">
+            <h1 style="font-size: 48px; margin: 20px 0;">🐾 Flappy Pet 🐾</h1>
+            
+            <!-- Warning if no pet image -->
+            <div class="game-warning" id="noPetWarning" style="display: none;">
+                ⚠️ No pet image found! <a href="pet.html">Upload your pet's photo</a> to use it in the game, or play with the default character.
+            </div>
+
+            <!-- Game Canvas -->
+            <div class="game-canvas-wrapper">
+                <canvas id="gameCanvas" width="600" height="500"></canvas>
+                
+                <!-- Game Overlay (Start/Game Over) -->
+                <div class="game-overlay" id="gameOverlay">
+                    <h2 class="game-title">Flappy Pet</h2>
+                    <p class="game-score-display" id="scoreDisplay">
+                        Score: <span id="finalScore">0</span>
+                    </p>
+                    <p class="game-instructions">
+                        Click or press SPACE to make your pet fly!<br>
+                        Avoid the obstacles and see how far you can go!
+                    </p>
+                    <button class="game-btn" onclick="startGame()">Start Game</button>
+                </div>
+            </div>
+
+            <!-- Game Stats -->
+            <div class="game-stats">
+                <div class="stat-box">
+                    <h3>Current Score</h3>
+                    <div class="stat-number" id="currentScore">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3>Session High</h3>
+                    <div class="stat-number" id="highScore">0</div>
+                </div>
+                <div class="stat-box">
+                    <h3>Best Ever</h3>
+                    <div class="stat-number" id="bestScore">0</div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <h3>How to Play:</h3>
+                <ul style="text-align: left; line-height: 1.8;">
+                    <li><strong>Click</strong> or press <strong>SPACE</strong> to make your pet jump</li>
+                    <li>Navigate through the gaps between the obstacles</li>
+                    <li>Each obstacle you pass increases your score by 1</li>
+                    <li>Don't hit the obstacles or the ground!</li>
+                    <li>Beat your high score and challenge yourself!</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025-2067 Paw Pal. All rights reserved.</p>
+    </footer>
+
+    <script src="ai.js"></script>
+    <script>
+        // Check if pet image exists
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedPetImage = localStorage.getItem('petImage_0');
+            const warning = document.getElementById('noPetWarning');
+            if (!savedPetImage && warning) {
+                warning.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -575,3 +575,620 @@ function nextMonth() {
     }
     renderCalendar(currentMonth, currentYear);
 }
+// Activity type emojis
+const activityIcons = {
+    'Walk': '🚶',
+    'Fed': '🍽️',
+    'Play': '🎾',
+    'Vet': '💉',
+    'Grooming': '✂️',
+    'Training': '📚',
+    'Bath': '🛁',
+    'Medicine': '💊',
+    'Other': '📝'
+};
+
+// Initialize activity log if on page
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('recentActivities')) {
+        loadActivities();
+    }
+});
+
+function addActivity() {
+    const activityType = document.getElementById('activityType').value;
+    const activityDetails = document.getElementById('activityDetails').value.trim();
+    
+    if (!activityType) {
+        alert('Please select an activity type');
+        return;
+    }
+    
+    const now = new Date();
+    const activity = {
+        id: Date.now(),
+        type: activityType,
+        details: activityDetails || activityType,
+        timestamp: now.toISOString(),
+        dateStr: now.toLocaleDateString(),
+        timeStr: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+    
+    // Get existing activities
+    let activities = JSON.parse(localStorage.getItem('petActivities') || '[]');
+    activities.unshift(activity); // Add to beginning
+    
+    // Keep only last 100 activities
+    if (activities.length > 100) {
+        activities = activities.slice(0, 100);
+    }
+    
+    localStorage.setItem('petActivities', JSON.stringify(activities));
+    
+    // Clear form
+    document.getElementById('activityType').value = '';
+    document.getElementById('activityDetails').value = '';
+    
+    // Reload activities
+    loadActivities();
+}
+
+function loadActivities() {
+    const activities = JSON.parse(localStorage.getItem('petActivities') || '[]');
+    
+    const recentContainer = document.getElementById('recentActivities');
+    const upcomingContainer = document.getElementById('upcomingActivities');
+    
+    if (!recentContainer || !upcomingContainer) return;
+    
+    // Clear existing
+    recentContainer.innerHTML = '';
+    upcomingContainer.innerHTML = '';
+    
+    const now = new Date();
+    const recentActivities = [];
+    const upcomingActivities = [];
+    
+    // Get scheduled events from calendar
+    const calendarEvents = JSON.parse(localStorage.getItem('calendarEvents') || '[]');
+    
+    // Separate upcoming events (future dates)
+    calendarEvents.forEach(event => {
+        const eventDate = new Date(event.date + (event.time ? ' ' + event.time : ''));
+        if (eventDate > now) {
+            upcomingActivities.push({
+                type: 'Scheduled',
+                details: event.name,
+                timestamp: eventDate.toISOString(),
+                dateStr: eventDate.toLocaleDateString(),
+                timeStr: event.time || 'All day',
+                isScheduled: true
+            });
+        }
+    });
+    
+    // Sort upcoming by date
+    upcomingActivities.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    
+    // Get recent activities (completed)
+    activities.forEach(activity => {
+        recentActivities.push(activity);
+    });
+    
+    // Render recent activities
+    if (recentActivities.length === 0) {
+        recentContainer.innerHTML = '<div class="empty-state">No recent activities</div>';
+    } else {
+        recentActivities.slice(0, 20).forEach(activity => {
+            const activityEl = createActivityElement(activity, false);
+            recentContainer.appendChild(activityEl);
+        });
+    }
+    
+    // Render upcoming activities
+    if (upcomingActivities.length === 0) {
+        upcomingContainer.innerHTML = '<div class="empty-state">No upcoming activities</div>';
+    } else {
+        upcomingActivities.slice(0, 10).forEach(activity => {
+            const activityEl = createActivityElement(activity, true);
+            upcomingContainer.appendChild(activityEl);
+        });
+    }
+}
+
+function createActivityElement(activity, isUpcoming) {
+    const div = document.createElement('div');
+    div.className = 'activity-item';
+    
+    const icon = document.createElement('div');
+    icon.className = 'activity-icon';
+    icon.textContent = activityIcons[activity.type] || '📝';
+    
+    const content = document.createElement('div');
+    content.className = 'activity-content';
+    
+    const name = document.createElement('div');
+    name.className = 'activity-name';
+    name.textContent = activity.details;
+    
+    const time = document.createElement('div');
+    time.className = 'activity-time';
+    time.textContent = activity.timeStr;
+    
+    content.appendChild(name);
+    content.appendChild(time);
+    
+    div.appendChild(icon);
+    div.appendChild(content);
+    
+    // Add delete button only for non-scheduled activities
+    if (!isUpcoming && !activity.isScheduled) {
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-activity';
+        deleteBtn.innerHTML = '×';
+        deleteBtn.onclick = function(e) {
+            e.stopPropagation();
+            deleteActivity(activity.id);
+        };
+        div.appendChild(deleteBtn);
+    }
+    
+    return div;
+}
+
+function deleteActivity(activityId) {
+    if (confirm('Delete this activity?')) {
+        let activities = JSON.parse(localStorage.getItem('petActivities') || '[]');
+        activities = activities.filter(a => a.id !== activityId);
+        localStorage.setItem('petActivities', JSON.stringify(activities));
+        loadActivities();
+    }
+}
+let currentDataFilter = 'week';
+
+// Initialize data page if present
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('activityChart')) {
+        initActivityData();
+    }
+});
+
+function initActivityData() {
+    renderActivityChart(currentDataFilter);
+    updateStatCards();
+}
+
+function setDataFilter(filter) {
+    currentDataFilter = filter;
+    
+    // Update button states
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    renderActivityChart(filter);
+}
+
+function renderActivityChart(filter) {
+    const activities = JSON.parse(localStorage.getItem('petActivities') || '[]');
+    const chartContainer = document.getElementById('activityChart');
+    
+    if (!chartContainer) return;
+    
+    // Clear existing chart
+    chartContainer.innerHTML = '';
+    
+    // Add Y-axis
+    const yAxis = document.createElement('div');
+    yAxis.className = 'y-axis';
+    yAxis.innerHTML = `
+        <div class="y-axis-title">Activities</div>
+        <div class="y-axis-label">10</div>
+        <div class="y-axis-label">8</div>
+        <div class="y-axis-label">6</div>
+        <div class="y-axis-label">4</div>
+        <div class="y-axis-label">2</div>
+        <div class="y-axis-label">0</div>
+    `;
+    chartContainer.appendChild(yAxis);
+    
+    // Get data based on filter
+    let chartData = [];
+    const now = new Date();
+    
+    if (filter === 'week') {
+        // Last 7 days
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        for (let i = 6; i >= 0; i--) {
+            const date = new Date(now);
+            date.setDate(date.getDate() - i);
+            const dayName = days[date.getDay()];
+            const count = activities.filter(a => {
+                const actDate = new Date(a.timestamp);
+                return actDate.toDateString() === date.toDateString();
+            }).length;
+            chartData.push({ label: dayName, value: count });
+        }
+    } else if (filter === 'month') {
+        // Last 4 weeks
+        for (let i = 3; i >= 0; i--) {
+            const weekStart = new Date(now);
+            weekStart.setDate(weekStart.getDate() - (i * 7) - 6);
+            const weekEnd = new Date(now);
+            weekEnd.setDate(weekEnd.getDate() - (i * 7));
+            
+            const count = activities.filter(a => {
+                const actDate = new Date(a.timestamp);
+                return actDate >= weekStart && actDate <= weekEnd;
+            }).length;
+            
+            chartData.push({ 
+                label: `Week ${4-i}`, 
+                value: count 
+            });
+        }
+    } else if (filter === 'year') {
+        // Last 12 months
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        for (let i = 11; i >= 0; i--) {
+            const date = new Date(now);
+            date.setMonth(date.getMonth() - i);
+            const monthName = months[date.getMonth()];
+            
+            const count = activities.filter(a => {
+                const actDate = new Date(a.timestamp);
+                return actDate.getMonth() === date.getMonth() && 
+                       actDate.getFullYear() === date.getFullYear();
+            }).length;
+            
+            chartData.push({ label: monthName, value: count });
+        }
+    }
+    
+    // Find max value for scaling
+    const maxValue = Math.max(...chartData.map(d => d.value), 10);
+    
+    // Create bars
+    chartData.forEach(data => {
+        const barContainer = document.createElement('div');
+        barContainer.className = 'chart-bar-container';
+        
+        const bar = document.createElement('div');
+        bar.className = 'chart-bar';
+        const heightPercent = (data.value / maxValue) * 100;
+        bar.style.height = `${Math.max(heightPercent, 5)}%`;
+        
+        if (data.value > 0) {
+            const valueLabel = document.createElement('div');
+            valueLabel.className = 'bar-value';
+            valueLabel.textContent = data.value;
+            bar.appendChild(valueLabel);
+        }
+        
+        const label = document.createElement('div');
+        label.className = 'chart-label';
+        label.textContent = data.label;
+        
+        barContainer.appendChild(bar);
+        barContainer.appendChild(label);
+        chartContainer.appendChild(barContainer);
+    });
+}
+
+function updateStatCards() {
+    const activities = JSON.parse(localStorage.getItem('petActivities') || '[]');
+    
+    // Count activities by type
+    const walkCount = activities.filter(a => a.type === 'Walk').length;
+    const fedCount = activities.filter(a => a.type === 'Fed').length;
+    const medicineCount = activities.filter(a => a.type === 'Medicine').length;
+    
+    // Update stat cards
+    const walkCard = document.querySelector('[data-stat="walking"]');
+    const feedCard = document.querySelector('[data-stat="feeding"]');
+    const medicineCard = document.querySelector('[data-stat="medicine"]');
+    
+    if (walkCard) {
+        walkCard.querySelector('.stat-value').textContent = walkCount;
+    }
+    if (feedCard) {
+        feedCard.querySelector('.stat-value').textContent = fedCount;
+    }
+    if (medicineCard) {
+        medicineCard.querySelector('.stat-value').textContent = medicineCount;
+    }
+}
+
+function toggleStatCard(card) {
+    // Remove active from all cards
+    document.querySelectorAll('.stat-card').forEach(c => {
+        c.classList.remove('active');
+    });
+    
+    // Add active to clicked card
+    card.classList.add('active');
+    
+    // You could filter the chart based on this selection
+    const statType = card.dataset.stat;
+    console.log('Selected stat:', statType);
+}
+
+let gameCanvas, gameCtx;
+let gameRunning = false;
+let gameScore = 0;
+let gameHighScore = 0;
+let gameBestScore = 0;
+
+let pet = {
+    x: 100,
+    y: 200,
+    width: 50,
+    height: 50,
+    velocity: 0,
+    gravity: 0.5,
+    jump: -10,
+    image: null
+};
+
+let pipes = [];
+let frameCount = 0;
+const pipeGap = 180;
+const pipeWidth = 60;
+const pipeSpeed = 3;
+
+// Initialize game if on game page
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('gameCanvas')) {
+        initFlappyGame();
+    }
+});
+
+function initFlappyGame() {
+    gameCanvas = document.getElementById('gameCanvas');
+    gameCtx = gameCanvas.getContext('2d');
+    
+    // Load high scores
+    gameHighScore = parseInt(localStorage.getItem('flappyHighScore')) || 0;
+    gameBestScore = parseInt(localStorage.getItem('flappyBestScore')) || 0;
+    updateGameStats();
+    
+    // Load pet image
+    loadPetImage();
+    
+    // Event listeners
+    gameCanvas.addEventListener('click', () => {
+        if (gameRunning) {
+            pet.velocity = pet.jump;
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && gameRunning) {
+            e.preventDefault();
+            pet.velocity = pet.jump;
+        }
+    });
+}
+
+function loadPetImage() {
+    const savedPetImage = localStorage.getItem('petImage_0');
+    
+    if (savedPetImage) {
+        pet.image = new Image();
+        pet.image.src = savedPetImage;
+        pet.image.onload = function() {
+            // Image loaded successfully
+        };
+    } else {
+        // Create a default pet circle if no image
+        pet.image = null;
+    }
+}
+
+function startGame() {
+    // Reset game state
+    gameRunning = true;
+    gameScore = 0;
+    frameCount = 0;
+    pipes = [];
+    pet.y = 200;
+    pet.velocity = 0;
+    
+    // Hide overlay
+    document.getElementById('gameOverlay').classList.add('hidden');
+    
+    // Start game loop
+    gameLoop();
+}
+
+function gameLoop() {
+    if (!gameRunning) return;
+    
+    // Clear canvas
+    gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+    
+    // Draw background
+    drawBackground();
+    
+    // Update and draw pet
+    updatePet();
+    drawPet();
+    
+    // Update and draw pipes
+    updatePipes();
+    drawPipes();
+    
+    // Draw score
+    drawScore();
+    
+    // Check collisions
+    checkCollisions();
+    
+    frameCount++;
+    requestAnimationFrame(gameLoop);
+}
+
+function drawBackground() {
+    // Sky gradient
+    const gradient = gameCtx.createLinearGradient(0, 0, 0, gameCanvas.height);
+    gradient.addColorStop(0, '#87CEEB');
+    gradient.addColorStop(1, '#E0F6FF');
+    gameCtx.fillStyle = gradient;
+    gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+    
+    // Ground
+    gameCtx.fillStyle = '#8fb996';
+    gameCtx.fillRect(0, gameCanvas.height - 50, gameCanvas.width, 50);
+}
+
+function updatePet() {
+    pet.velocity += pet.gravity;
+    pet.y += pet.velocity;
+    
+    // Keep pet on screen
+    if (pet.y < 0) pet.y = 0;
+    if (pet.y > gameCanvas.height - 50 - pet.height) {
+        pet.y = gameCanvas.height - 50 - pet.height;
+        endGame();
+    }
+}
+
+function drawPet() {
+    if (pet.image && pet.image.complete) {
+        // Draw pet image in circular clip
+        gameCtx.save();
+        gameCtx.beginPath();
+        gameCtx.arc(pet.x + pet.width/2, pet.y + pet.height/2, pet.width/2, 0, Math.PI * 2);
+        gameCtx.closePath();
+        gameCtx.clip();
+        gameCtx.drawImage(pet.image, pet.x, pet.y, pet.width, pet.height);
+        gameCtx.restore();
+        
+        // Draw border
+        gameCtx.strokeStyle = '#fff';
+        gameCtx.lineWidth = 3;
+        gameCtx.beginPath();
+        gameCtx.arc(pet.x + pet.width/2, pet.y + pet.height/2, pet.width/2, 0, Math.PI * 2);
+        gameCtx.stroke();
+    } else {
+        // Draw default circle
+        gameCtx.fillStyle = '#ff9999';
+        gameCtx.beginPath();
+        gameCtx.arc(pet.x + pet.width/2, pet.y + pet.height/2, pet.width/2, 0, Math.PI * 2);
+        gameCtx.fill();
+        
+        gameCtx.strokeStyle = '#fff';
+        gameCtx.lineWidth = 3;
+        gameCtx.stroke();
+    }
+}
+
+function updatePipes() {
+    // Add new pipe every 90 frames
+    if (frameCount % 90 === 0) {
+        const minHeight = 50;
+        const maxHeight = gameCanvas.height - 50 - pipeGap - 50;
+        const topHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+        
+        pipes.push({
+            x: gameCanvas.width,
+            topHeight: topHeight,
+            scored: false
+        });
+    }
+    
+    // Move pipes
+    pipes.forEach((pipe, index) => {
+        pipe.x -= pipeSpeed;
+        
+        // Remove off-screen pipes
+        if (pipe.x + pipeWidth < 0) {
+            pipes.splice(index, 1);
+        }
+        
+        // Score point
+        if (!pipe.scored && pipe.x + pipeWidth < pet.x) {
+            pipe.scored = true;
+            gameScore++;
+            
+            // Update high score
+            if (gameScore > gameHighScore) {
+                gameHighScore = gameScore;
+                localStorage.setItem('flappyHighScore', gameHighScore);
+            }
+        }
+    });
+}
+
+function drawPipes() {
+    pipes.forEach(pipe => {
+        // Top pipe
+        gameCtx.fillStyle = '#2d5016';
+        gameCtx.fillRect(pipe.x, 0, pipeWidth, pipe.topHeight);
+        gameCtx.strokeStyle = '#1a3010';
+        gameCtx.lineWidth = 2;
+        gameCtx.strokeRect(pipe.x, 0, pipeWidth, pipe.topHeight);
+        
+        // Bottom pipe
+        const bottomY = pipe.topHeight + pipeGap;
+        const bottomHeight = gameCanvas.height - 50 - bottomY;
+        gameCtx.fillStyle = '#2d5016';
+        gameCtx.fillRect(pipe.x, bottomY, pipeWidth, bottomHeight);
+        gameCtx.strokeRect(pipe.x, bottomY, pipeWidth, bottomHeight);
+    });
+}
+
+function drawScore() {
+    gameCtx.fillStyle = 'white';
+    gameCtx.font = 'bold 48px Nunito';
+    gameCtx.textAlign = 'center';
+    gameCtx.strokeStyle = 'black';
+    gameCtx.lineWidth = 3;
+    gameCtx.strokeText(gameScore, gameCanvas.width / 2, 60);
+    gameCtx.fillText(gameScore, gameCanvas.width / 2, 60);
+}
+
+function checkCollisions() {
+    pipes.forEach(pipe => {
+        // Check collision with top pipe
+        if (pet.x + pet.width > pipe.x && 
+            pet.x < pipe.x + pipeWidth && 
+            pet.y < pipe.topHeight) {
+            endGame();
+        }
+        
+        // Check collision with bottom pipe
+        const bottomY = pipe.topHeight + pipeGap;
+        if (pet.x + pet.width > pipe.x && 
+            pet.x < pipe.x + pipeWidth && 
+            pet.y + pet.height > bottomY) {
+            endGame();
+        }
+    });
+}
+
+function endGame() {
+    gameRunning = false;
+    
+    // Update best score
+    if (gameScore > gameBestScore) {
+        gameBestScore = gameScore;
+        localStorage.setItem('flappyBestScore', gameBestScore);
+    }
+    
+    // Show game over
+    document.getElementById('finalScore').textContent = gameScore;
+    document.getElementById('gameOverlay').classList.remove('hidden');
+    updateGameStats();
+}
+
+function updateGameStats() {
+    const currentScoreEl = document.getElementById('currentScore');
+    const highScoreEl = document.getElementById('highScore');
+    const bestScoreEl = document.getElementById('bestScore');
+    
+    if (currentScoreEl) currentScoreEl.textContent = gameScore;
+    if (highScoreEl) highScoreEl.textContent = gameHighScore;
+    if (bestScoreEl) bestScoreEl.textContent = gameBestScore;
+}
