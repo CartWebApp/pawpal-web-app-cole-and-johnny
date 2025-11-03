@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,26 +9,28 @@
     <link rel="stylesheet" href="looks.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <nav>
-    <a href="index.html"><img class="logo" src="images/logo.png"></a>
-    <ul class="navbar">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pet.html">Pets</a></li>
-        <li><a href="live.html">Live Maps</a></li>
-        <li><a href="account.html">Account</a></li>
-    </ul>
-    <figure class="account" id="navAccount">
-        <a href="sign.html" id="signupLink">Sign Up</a>
-        <a href="log.html" id="loginLink">Log in</a>
-        <a href="account.html" id="userProfile" style="display: none;">
-            <img src="images/biden.png" id="biden">
-            <span id="navUsername">Username</span>
-        </a>
-    </figure>
-</nav>
+        <a href="index.html"><img class="logo" src="images/logo.png"></a>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pet.html">Pets</a></li>
+            <li><a href="live.html">Live Maps</a></li>
+            <li><a href="account.html">Account</a></li>
+        </ul>
+        <figure class="account" id="navAccount">
+            <a href="sign.html" id="signupLink">Sign Up</a>
+            <a href="log.html" id="loginLink">Log in</a>
+            <a href="account.html" id="userProfile" style="display: none;">
+                <img src="images/biden.png" id="biden">
+                <span id="navUsername">Username</span>
+            </a>
+        </figure>
+    </nav>
     <main id="pet">
         <section class="subnav">
             <a href="pet.html">Pet Profile</a>
@@ -35,20 +38,46 @@
             <a href="act-log.html">Activity Log</a>
             <a href="data.html">Activity Data</a>
         </section>
-    
-    <div class="pictures" onclick="triggerUpload(this)">
-        <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
-        <span>Click to Upload Pet Photo</span>
-    </div>
+        <section class="filter-section">
+            <label for="activityFilter">Filter Activities:</label>
+            <select id="activityFilter" style="margin-left: 10px;">
+                <option value="all">All</option>
+                <option value="walk">Walks</option>
+                <option value="play">Playtime</option>
+                <option value="meal">Meals</option>
+                <option value="sleep">Sleep</option>
+            </select>
+        </section>
 
-    <div id="petsname">
-    <label for="petName">Pet's Name</label>
-    <input type="text" id="petName">
-    </div>
+        <div class="pictures" onclick="triggerUpload(this)">
+            <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
+            <span>Click to Upload Pet Photo</span>
+        </div>
 
-    <button onclick="savePetProfile()" id="petsave">Save Profile</button>
+        <div id="petsname">
+            <label for="petName">Pet's Name</label>
+            <input type="text" id="petName">
+        </div>
 
-    <script src="ai.js"></script>
+        <div id="petstype">
+            <label for="petName">Pet's Species</label>
+            <input type="text" id="petName">
+        </div>
+
+        <div id="petsage">
+            <label for="petName">Pet's age</label>
+            <input type="text" id="petName">
+        </div>
+
+        <div id="petsgender">
+            <label for="petName">Pet's Gender</label>
+            <input type="text" id="petName">
+        </div>
+
+        <button onclick="savePetProfile()" id="petsave">Save Profile</button>
+
     </main>
+    <script src="ai.js"></script>
 </body>
+
 </html>

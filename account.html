@@ -27,34 +27,23 @@
             </a>
         </figure>
     </nav>
-    <main>
-        <div class="auth-container">
-            <h1>Create Your Account</h1>
-            <form id="signupForm" onsubmit="handleSignup(event)">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required minlength="6">
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
-                </div>
-                <button type="submit" class="auth-btn">Sign Up</button>
-            </form>
-            <p class="auth-switch">Already have an account? <a href="log.html">Log in</a></p>
-        </div>
-    </main>
-    <footer>
-        <p>© 2025-2067 Paw Pal. All rights reserved.</p>
-    </footer>
-    <script src="auth.js"></script>
+    <main id="account">
+        <a class="ownr-set" href="setting.html"><img src="images/burger.png" id="setting"></a>
+    <div class="pictures" onclick="triggerUpload(this)">
+        <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
+        <span>Click to Upload Photo</span>
+    </div>
+<section class="saveprof">
+    <button onclick="saveUserProfile()">Save Profile</button>
+</section>
+<section id="userinfo">
+    <label for="username">Username</label><br>
+    <input type="text" id="username">
+<br><br>
+    <label for="bio">Bio</label><br>
+    <input type="text" id="bio">
+</section>
+</main>
+    <script src="ai.js"></script>
 </body>
 </html>

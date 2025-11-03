@@ -394,3 +394,184 @@ function logout() {
     alert('You have been logged out.');
     window.location.href = 'index.html';
 }
+/* ============================================== */
+/* CALENDAR FUNCTIONS - Add to ai.js             */
+/* ============================================== */
+
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
+// Initialize calendar if on schedule page
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('calendar')) {
+        initCalendar();
+    }
+});
+
+function initCalendar() {
+    renderCalendar(currentMonth, currentYear);
+    loadEvents();
+}
+
+function renderCalendar(month, year) {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+    
+    document.getElementById('monthYear').textContent = monthNames[month] + ' ' + year;
+    
+    const calendarGrid = document.getElementById('calendar');
+    calendarGrid.innerHTML = '';
+    
+    // Add day headers
+    const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    dayHeaders.forEach(day => {
+        const header = document.createElement('div');
+        header.className = 'day-header';
+        header.textContent = day;
+        calendarGrid.appendChild(header);
+    });
+    
+    // Add previous month's trailing days
+    for (let i = firstDay - 1; i >= 0; i--) {
+        const day = createDayElement(daysInPrevMonth - i, month - 1, year, true);
+        calendarGrid.appendChild(day);
+    }
+    
+    // Add current month's days
+    for (let i = 1; i <= daysInMonth; i++) {
+        const day = createDayElement(i, month, year, false);
+        calendarGrid.appendChild(day);
+    }
+    
+    // Add next month's leading days
+    const totalCells = calendarGrid.children.length - 7; // subtract headers
+    const remainingCells = (Math.ceil(totalCells / 7) * 7) - totalCells;
+    for (let i = 1; i <= remainingCells; i++) {
+        const day = createDayElement(i, month + 1, year, true);
+        calendarGrid.appendChild(day);
+    }
+    
+    loadEvents();
+}
+
+function createDayElement(dayNum, month, year, isOtherMonth) {
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'calendar-day';
+    
+    if (isOtherMonth) {
+        dayDiv.classList.add('other-month');
+    }
+    
+    // Check if today
+    const today = new Date();
+    if (dayNum === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+        dayDiv.classList.add('today');
+    }
+    
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+    dayDiv.dataset.date = dateStr;
+    
+    const dayNumber = document.createElement('div');
+    dayNumber.className = 'day-number';
+    dayNumber.textContent = dayNum;
+    dayDiv.appendChild(dayNumber);
+    
+    return dayDiv;
+}
+
+function addEvent() {
+    const eventDate = document.getElementById('eventDate').value;
+    const eventTime = document.getElementById('eventTime').value;
+    const eventName = document.getElementById('eventName').value;
+    
+    if (!eventDate || !eventName) {
+        alert('Please fill in date and event name');
+        return;
+    }
+    
+    const event = {
+        id: Date.now(),
+        date: eventDate,
+        time: eventTime || '',
+        name: eventName
+    };
+    
+    // Get existing events
+    let events = JSON.parse(localStorage.getItem('calendarEvents') || '[]');
+    events.push(event);
+    localStorage.setItem('calendarEvents', JSON.stringify(events));
+    
+    // Clear form
+    document.getElementById('eventDate').value = '';
+    document.getElementById('eventTime').value = '';
+    document.getElementById('eventName').value = '';
+    
+    // Reload events
+    loadEvents();
+}
+
+function loadEvents() {
+    const events = JSON.parse(localStorage.getItem('calendarEvents') || '[]');
+    
+    // Clear existing event displays
+    document.querySelectorAll('.event-item').forEach(el => el.remove());
+    
+    events.forEach(event => {
+        const dayElement = document.querySelector(`[data-date="${event.date}"]`);
+        if (dayElement) {
+            const eventItem = document.createElement('div');
+            eventItem.className = 'event-item';
+            eventItem.title = event.name;
+            
+            const eventContent = document.createElement('span');
+            if (event.time) {
+                eventContent.innerHTML = `<span class="event-time">${event.time}</span> ${event.name}`;
+            } else {
+                eventContent.textContent = event.name;
+            }
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-event';
+            deleteBtn.innerHTML = '×';
+            deleteBtn.onclick = function(e) {
+                e.stopPropagation();
+                deleteEvent(event.id);
+            };
+            
+            eventItem.appendChild(eventContent);
+            eventItem.appendChild(deleteBtn);
+            dayElement.appendChild(eventItem);
+        }
+    });
+}
+
+function deleteEvent(eventId) {
+    if (confirm('Delete this event?')) {
+        let events = JSON.parse(localStorage.getItem('calendarEvents') || '[]');
+        events = events.filter(e => e.id !== eventId);
+        localStorage.setItem('calendarEvents', JSON.stringify(events));
+        loadEvents();
+    }
+}
+
+function previousMonth() {
+    currentMonth--;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+    renderCalendar(currentMonth, currentYear);
+}
+
+function nextMonth() {
+    currentMonth++;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    renderCalendar(currentMonth, currentYear);
+}

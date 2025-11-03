@@ -135,7 +135,7 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
 }
 .subnav {
     display: flex;
@@ -166,6 +166,39 @@ a{
     position: relative;
     width: 20%;
     margin-left: 5%;
+    width: fit-content;
+}
+#petstype {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 20%;
+    margin-left: 5%;
+    width: fit-content;
+}
+#petsage {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 20%;
+    margin-left: 80%;
+    width: fit-content;
+}
+#petsgender {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 20%;
+    margin-left: 80%;
+    width: fit-content;
+}
+
+#petName {
+    background-color: var(--accent1);
+    border-radius: 10px;
+    height: 4vh;
+    font-size: x-large;
+
 }
 
 #petsave {
@@ -616,4 +649,177 @@ height: 6vh;
 #navUsername {
     font-weight: 600;
     color: #333;
+}
+.calendar-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.event-form {
+    background-color: var(--accent1);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.event-form label {
+    font-weight: 600;
+}
+
+.event-form input[type="date"],
+.event-form input[type="time"],
+.event-form input[type="text"] {
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+}
+
+.event-form input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+}
+
+.add-event-btn {
+    background-color: #ff9999;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.add-event-btn:hover {
+    background-color: #ff7777;
+    transition: 150ms;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: var(--accent1);
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 15px;
+    color: #333;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.day-header {
+    background-color: var(--accent1);
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.calendar-day {
+    background-color: var(--primary);
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calendar-day:hover {
+    background-color: var(--accent1);
+    transform: scale(1.02);
+}
+
+.calendar-day.other-month {
+    opacity: 0.3;
+}
+
+.calendar-day.today {
+    border: 3px solid #ff9999;
+    box-shadow: 0 0 10px rgba(255, 153, 153, 0.5);
+}
+
+.day-number {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.event-item {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 4px 8px;
+    margin-top: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    cursor: pointer;
+}
+
+.event-item:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.event-time {
+    font-weight: 600;
+    color: #666;
+}
+
+.delete-event {
+    position: absolute;
+    right: 4px;
+    top: 2px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    cursor: pointer;
+    display: none;
+    line-height: 1;
+    padding: 0;
+}
+
+.event-item:hover .delete-event {
+    display: block;
+}
+
+.delete-event:hover {
+    background: #ff3838;
 }

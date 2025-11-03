@@ -54,7 +54,10 @@
         <option value="pet3">Bella</option>
     </select><br>
     </article>
-    <img src="images/fish.png" id="live-pet">
+    <div class="pictures" onclick="triggerUpload(this)">
+            <input type="file" accept="image/*" onchange="handleImageUpload(event, this)">
+            <span>Click to Upload Pet Photo</span>
+        </div>
    
    <div id="map"></div>
 
