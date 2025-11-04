@@ -1368,19 +1368,19 @@ input#bio{
     }
     
     nav li>a[href="index.html"]{
-        background-image:url(/images/1946488.png);
+        background-image:url(images/1946488.png);
     }
     
     nav li>a[href="pet.html"]{
-        background-image:url(/images/paw-icon.png);
+        background-image:url(images/paw-icon.png);
     }
     
     nav li>a[href="live.html"]{
-        background-image:url(/images/map.png);
+        background-image:url(images/map.png);
     }
     
     nav li>a[href="account.html"]{
-        background-image:url(/images/accnt.png);
+        background-image:url(images/accnt.png);
     }
     
     figure.account{
