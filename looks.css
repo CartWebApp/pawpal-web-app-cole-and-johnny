@@ -1322,7 +1322,7 @@ input#bio{
         width:100%;
         order:-1;
         padding:0;
-        background-color: var(--accent2);
+        
         height: 9.6vh;
         z-index: 1000;
     }
