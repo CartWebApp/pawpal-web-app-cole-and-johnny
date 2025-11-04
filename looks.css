@@ -1327,7 +1327,7 @@ input#bio{
         z-index: 1000;
     }
     
-    /* Hide the entire logo link, not just the img */
+    /* Hide the entire logo link */
     nav > a:first-child,
     .logo{
         display:none !important;
@@ -1341,7 +1341,7 @@ input#bio{
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 0; /* Remove border radius on mobile */
+        border-radius: 0;
     }
     
     nav>ul{
@@ -1354,33 +1354,33 @@ input#bio{
         padding: 0;
     }
     
-    /* Base style for all nav links on mobile */
+    /* Debug version with red tint to see if links exist */
     nav li > a{
         display:block !important;
-        background-size:60%;
+        background-size:contain;
         background-repeat: no-repeat;
         background-position: center;
         width: 100%;
         height: 100%;
-        color:transparent !important;
-        border-radius:0;
-        text-indent: -9999px; /* Hide text completely */
+        text-indent: -9999px;
+        /* Add a background color to see if the link exists */
+        background-color: rgba(255,0,0,0.1);
     }
     
     nav li>a[href="index.html"]{
-        background-image:url(images/1946488.png);
+        background-image:url('./images/1946488.png');
     }
     
     nav li>a[href="pet.html"]{
-        background-image:url(images/paw-icon.png);
+        background-image:url('./images/paw-icon.png');
     }
     
     nav li>a[href="live.html"]{
-        background-image:url(images/map.png);
+        background-image:url('./images/map.png');
     }
     
     nav li>a[href="account.html"]{
-        background-image:url(images/accnt.png);
+        background-image:url('./images/accnt.png');
     }
     
     figure.account{
@@ -1389,7 +1389,7 @@ input#bio{
     
     ul.navbar{
         margin:0;
-        height: 100%;
+        height:100%;
     }
     
     .subnav{
@@ -1400,6 +1400,10 @@ input#bio{
     
     .calendar-grid{
         z-index:-2;
+    }
+    
+    nav {
+        z-index: 2;
     }
     
     #map{
