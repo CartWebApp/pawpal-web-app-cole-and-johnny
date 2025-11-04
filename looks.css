@@ -118,6 +118,12 @@ h2 {
 ul{ 
     padding:0
 }
+footer{
+    margin-top: auto;
+    width: 100%;
+    position: relative;
+    z-index: -1;
+}
 footer>p{
     background-color:black;
     color:white;
@@ -146,14 +152,16 @@ a{
     padding-top: 16.5vh;
     height: 3vh;
     width:100%;
-    
+    align-items:center;
+    padding-bottom:8vh;
 }
 
 .subnav > a {
     background-color: var(--primary);
     text-align: center;
     border-radius: 100px;
-    width:15%;
+    width:20%;
+    padding:1%;
 }
 
 .subnav > a:hover {
@@ -1297,6 +1305,10 @@ input#bio{
     width:20vw;
     height:10vh;
 }
+.game>img{
+    justify-self:flex-end;
+    width:20%;
+}
 @media (max-width:1120px){
     nav{
         display:flex;
@@ -1305,21 +1317,378 @@ input#bio{
         bottom:0;
         width:100%;
         order:-1;
+        padding:0;
     }
     a[href="index.html"]>img.logo{
         display:none;
     }
     nav li>a[href="index.html"]{
-        background-color:transparent;
+        display:flex;
         background-image:url(images/1946488.png);
-        background-size:contain;
+        background-size:cover;
         padding:0;
-        padding-top:100%;
-        text-align:end;
+        padding-top:31%;
+        padding-bottom:9%;
         color:transparent;
-        height:30%;
+        background-position: center;
+        border-radius:0px;
+        margin-left:2px;
+        width:91%;
+        margin-right:2px;
+        height:3.8vh;
     }
     nav li{
         background-color:transparent;
     }
+    nav>ul{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        width:100%;
+    }
+    figure.account{
+        display:none;
+    }
+    ul.navbar{
+        margin:0;
+        height:1vh;
+    }
+    nav li>a[href="pet.html"]{
+        display:flex;
+        background-image:url(images/paw-icon.png);
+        background-size:cover;
+        padding:0;
+        padding-top:31%;
+        padding-bottom:9%;
+        color:transparent;
+        background-position: center;
+        width:94%;
+        border-radius:0px;
+        margin-left:2px;
+        margin-right:2px;
+    }
+    nav li>a[href="live.html"]{
+        display:flex;
+        background-image:url(images/map.png);
+        background-size:cover;
+        padding:0;
+        padding-top:31%;
+        padding-bottom:9%;
+        color:transparent;
+        background-position: center;
+        width:117%;
+        border-radius:0px;
+        margin-left:2px;
+        margin-right:2px;
+        height:5.5vh;
+    }
+    nav li>a[href="account.html"]{
+        display:flex;
+        background-image:url(images/accnt.png);
+        background-size:cover;
+        padding:0;
+        padding-top:31%;
+        padding-bottom:9%;
+        color:transparent;
+        background-position: center;
+        width:70%;
+        border-radius:0px;
+        margin-left:2px;
+        margin-right:2px;
+    }
+    .subnav{
+        align-self:flex-start;
+        padding-top: 8vh;
+        padding-bottom:5vh;
+    }
+    .calendar-grid{
+        z-index:-2;
+        
+    }
+    nav {
+        z-index: 2;
+    }
+    #map{
+        z-index:-2;
+    }
+    button#petsave{
+        margin-bottom:10%;
+    }
+    .game>img{
+        margin-bottom:25%;
+    }
+}
+@media (max-width: 1024px) {
+    .game-container {
+        max-width: 95%;
+        padding: 15px;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+    }
+    
+    .game-title {
+        font-size: 40px;
+    }
+    
+    .game-stats {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .stat-box {
+        flex: 1 1 calc(33.333% - 15px);
+        min-width: 150px;
+    }
+}
+
+/* Mobile landscape and tablets portrait (768px and down) */
+@media (max-width: 768px) {
+ 
+    .game-container h1 {
+        font-size: 36px !important;
+        margin: 10px 0 !important;
+    }
+    
+    .game-canvas-wrapper {
+        margin: 10px auto;
+    }
+    
+    #gameCanvas {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .game-title {
+        font-size: 32px;
+    }
+    
+    .game-score-display {
+        font-size: 24px;
+    }
+    
+    .game-instructions {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+    
+    .game-btn {
+        padding: 12px 30px;
+        font-size: 18px;
+    }
+    
+    .game-stats {
+        flex-direction: column;
+        gap: 10px;
+        max-width: 100%;
+    }
+    
+    .stat-box {
+        flex: 1;
+        width: 92%;
+    }
+    
+    .stat-box h3 {
+        font-size: 14px;
+    }
+    
+    .stat-box .stat-number {
+        font-size: 28px;
+    }
+    
+    .game-warning {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+}
+
+/* Mobile phones (480px and down) */
+@media (max-width: 480px) {
+    
+    
+    figure a[href="account.html"] {
+        font-size: 12px;
+    }
+    
+    #biden {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .game-container {
+        padding: 10px;
+    }
+    
+    .game-container h1 {
+        font-size: 28px !important;
+        margin: 10px 0 !important;
+    }
+    
+    .game-canvas-wrapper {
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        max-width: 100%;
+        height: 400px;
+    }
+    
+    .game-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    
+    .game-score-display {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .game-instructions {
+        font-size: 14px;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+    
+    .game-btn {
+        padding: 10px 25px;
+        font-size: 16px;
+        margin: 5px;
+    }
+    
+    .game-stats {
+        gap: 8px;
+    }
+    
+    .stat-box {
+        padding: 15px;
+    }
+    
+    .stat-box h3 {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    
+    .stat-box .stat-number {
+        font-size: 24px;
+    }
+    
+    .game-warning {
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    /* Make instructions more compact on mobile */
+    .game-container ul {
+        font-size: 14px;
+        line-height: 1.6;
+        padding-left: 20px;
+    }
+    
+    .game-container h3 {
+        font-size: 18px;
+    }
+}
+
+/* Extra small phones (360px and down) */
+@media (max-width: 360px) {
+    .navbar li:nth-child(3),
+    .navbar li:nth-child(4) {
+        display: none; /* Hide "Live Maps" and "Account" on very small screens */
+    }
+    
+    .game-container h1 {
+        font-size: 24px !important;
+    }
+    
+    #gameCanvas {
+        height: 350px;
+    }
+    
+    .game-title {
+        font-size: 24px;
+    }
+    
+    .stat-box .stat-number {
+        font-size: 20px;
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .game-container h1 {
+        font-size: 24px !important;
+        margin: 5px 0 !important;
+    }
+    
+    #gameCanvas {
+        height: 300px;
+    }
+    
+    .game-stats {
+        flex-direction: row;
+    }
+    
+    .stat-box {
+        padding: 10px;
+    }
+    
+    .stat-box h3 {
+        font-size: 12px;
+    }
+    
+    .stat-box .stat-number {
+        font-size: 20px;
+    }
+    
+    .game-instructions {
+        font-size: 12px;
+    }
+    
+    .game-container ul {
+        display: none; /* Hide detailed instructions in landscape mode */
+    }
+}
+main#pref{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    height:100vh;
+}
+main.priv-notis{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    height:100vh;
+}
+main.term-con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    height:100vh;
+}
+.term-con p{
+    margin-bottom:30%;
+    padding:5%;
+}
+main.notis{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around;
+    height:100vh;
+}
+.save-btn{
+    margin-bottom:20%;
+}
+.pibble{
+    display:flex;
+    width:100vw;
 }
