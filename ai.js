@@ -926,16 +926,16 @@ let pet = {
     width: 50,
     height: 50,
     velocity: 0,
-    gravity: 0.5,
-    jump: -10,
+    gravity: 0.06,
+    jump: -3,
     image: null
 };
 
 let pipes = [];
 let frameCount = 0;
-const pipeGap = 180;
+const pipeGap = 200;
 const pipeWidth = 60;
-const pipeSpeed = 3;
+const pipeSpeed = 2;
 
 // Initialize game if on game page
 document.addEventListener('DOMContentLoaded', function() {

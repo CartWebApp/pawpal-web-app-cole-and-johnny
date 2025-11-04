@@ -149,9 +149,9 @@ a{
     justify-content: space-around;
     flex-wrap: nowrap;
     gap: 5%;
-    padding-top: 16.5vh;
+    padding-top: 10.5vh;
     height: 3vh;
-    width:100%;
+    width:90%;
     align-items:center;
     padding-bottom:8vh;
 }
@@ -167,6 +167,10 @@ a{
 .subnav > a:hover {
     background-color: var(--accent1);
     transition: 150ms;
+}
+
+.subnav >a:active {
+    transform: scale(.90);
 }
 
 #petsname {
@@ -1673,9 +1677,9 @@ main.term-con{
     align-items: center;
     justify-content:space-around;
     height:100vh;
+    text-align: center;
 }
 .term-con p{
-    margin-bottom:30%;
     padding:5%;
 }
 main.notis{
@@ -1691,4 +1695,5 @@ main.notis{
 .pibble{
     display:flex;
     width:100vw;
+    height: 70vh;
 }
