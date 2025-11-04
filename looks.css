@@ -1322,102 +1322,94 @@ input#bio{
         width:100%;
         order:-1;
         padding:0;
+        background-color: var(--accent2);
+        height: 9.6vh;
+        z-index: 1000;
     }
-    a[href="index.html"]>img.logo{
-        display:none;
+    
+    /* Hide the entire logo link, not just the img */
+    nav > a:first-child,
+    .logo{
+        display:none !important;
     }
-    nav li>a[href="index.html"]{
-        display:flex;
-        background-image:url(images/1946488.png);
-        background-size:cover;
-        padding:0;
-        padding-top:31%;
-        padding-bottom:9%;
-        color:transparent;
-        background-position: center;
-        border-radius:0px;
-        margin-left:2px;
-        width:91%;
-        margin-right:2px;
-        height:3.8vh;
-    }
+    
     nav li{
         background-color:transparent;
+        width: 25%;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0; /* Remove border radius on mobile */
     }
+    
     nav>ul{
         display:flex;
-        justify-content:space-between;
+        justify-content:space-around;
         align-items:center;
         width:100%;
+        height: 100%;
+        margin:0;
+        padding: 0;
     }
+    
+    /* Base style for all nav links on mobile */
+    nav li > a{
+        display:block !important;
+        background-size:60%;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 100%;
+        color:transparent !important;
+        border-radius:0;
+        text-indent: -9999px; /* Hide text completely */
+    }
+    
+    nav li>a[href="index.html"]{
+        background-image:url(images/1946488.png);
+    }
+    
+    nav li>a[href="pet.html"]{
+        background-image:url(images/paw-icon.png);
+    }
+    
+    nav li>a[href="live.html"]{
+        background-image:url(images/map.png);
+    }
+    
+    nav li>a[href="account.html"]{
+        background-image:url(images/accnt.png);
+    }
+    
     figure.account{
         display:none;
     }
+    
     ul.navbar{
         margin:0;
-        height:1vh;
+        height: 100%;
     }
-    nav li>a[href="pet.html"]{
-        display:flex;
-        background-image:url(images/paw-icon.png);
-        background-size:cover;
-        padding:0;
-        padding-top:31%;
-        padding-bottom:9%;
-        color:transparent;
-        background-position: center;
-        width:94%;
-        border-radius:0px;
-        margin-left:2px;
-        margin-right:2px;
-    }
-    nav li>a[href="live.html"]{
-        display:flex;
-        background-image:url(images/map.png);
-        background-size:cover;
-        padding:0;
-        padding-top:31%;
-        padding-bottom:9%;
-        color:transparent;
-        background-position: center;
-        width:117%;
-        border-radius:0px;
-        margin-left:2px;
-        margin-right:2px;
-        height:5.5vh;
-    }
-    nav li>a[href="account.html"]{
-        display:flex;
-        background-image:url(images/accnt.png);
-        background-size:cover;
-        padding:0;
-        padding-top:31%;
-        padding-bottom:9%;
-        color:transparent;
-        background-position: center;
-        width:70%;
-        border-radius:0px;
-        margin-left:2px;
-        margin-right:2px;
-    }
+    
     .subnav{
         align-self:flex-start;
         padding-top: 8vh;
         padding-bottom:5vh;
     }
+    
     .calendar-grid{
         z-index:-2;
-        
     }
-    nav {
-        z-index: 2;
-    }
+    
     #map{
         z-index:-2;
     }
+    
     button#petsave{
         margin-bottom:10%;
     }
+    
     .game>img{
         margin-bottom:25%;
     }
@@ -1446,66 +1438,6 @@ input#bio{
     .stat-box {
         flex: 1 1 calc(33.333% - 15px);
         min-width: 150px;
-    }
-}
-
-/* Mobile landscape and tablets portrait (768px and down) */
-@media (max-width: 768px) {
- 
-    .game-container h1 {
-        font-size: 36px !important;
-        margin: 10px 0 !important;
-    }
-    
-    .game-canvas-wrapper {
-        margin: 10px auto;
-    }
-    
-    #gameCanvas {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    .game-title {
-        font-size: 32px;
-    }
-    
-    .game-score-display {
-        font-size: 24px;
-    }
-    
-    .game-instructions {
-        font-size: 16px;
-        padding: 0 20px;
-    }
-    
-    .game-btn {
-        padding: 12px 30px;
-        font-size: 18px;
-    }
-    
-    .game-stats {
-        flex-direction: column;
-        gap: 10px;
-        max-width: 100%;
-    }
-    
-    .stat-box {
-        flex: 1;
-        width: 92%;
-    }
-    
-    .stat-box h3 {
-        font-size: 14px;
-    }
-    
-    .stat-box .stat-number {
-        font-size: 28px;
-    }
-    
-    .game-warning {
-        font-size: 14px;
-        padding: 12px 15px;
     }
 }
 
@@ -1598,65 +1530,7 @@ input#bio{
     }
 }
 
-/* Extra small phones (360px and down) */
-@media (max-width: 360px) {
-    .navbar li:nth-child(3),
-    .navbar li:nth-child(4) {
-        display: none; /* Hide "Live Maps" and "Account" on very small screens */
-    }
-    
-    .game-container h1 {
-        font-size: 24px !important;
-    }
-    
-    #gameCanvas {
-        height: 350px;
-    }
-    
-    .game-title {
-        font-size: 24px;
-    }
-    
-    .stat-box .stat-number {
-        font-size: 20px;
-    }
-}
 
-/* Landscape mode for mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-    .game-container h1 {
-        font-size: 24px !important;
-        margin: 5px 0 !important;
-    }
-    
-    #gameCanvas {
-        height: 300px;
-    }
-    
-    .game-stats {
-        flex-direction: row;
-    }
-    
-    .stat-box {
-        padding: 10px;
-    }
-    
-    .stat-box h3 {
-        font-size: 12px;
-    }
-    
-    .stat-box .stat-number {
-        font-size: 20px;
-    }
-    
-    .game-instructions {
-        font-size: 12px;
-    }
-    
-    .game-container ul {
-        display: none; /* Hide detailed instructions in landscape mode */
-    }
-}
 main#pref{
     display: flex;
     flex-direction: column;
@@ -1694,6 +1568,6 @@ main.notis{
 }
 .pibble{
     display:flex;
-    width:100vw;
+    width:100%;
     height: 70vh;
 }
