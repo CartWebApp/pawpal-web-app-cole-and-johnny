@@ -1364,7 +1364,7 @@ input#bio{
         height: 100%;
         text-indent: -9999px;
         /* Add a background color to see if the link exists */
-        background-color: rgba(255,0,0,0.1);
+        
     }
     
     nav li>a[href="index.html"]{
